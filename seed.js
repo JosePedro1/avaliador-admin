@@ -183,4 +183,4 @@ async function inserirDados() {
   process.exit();
 }
 
-inserirDados();
+module.exports = {inserirDados};
