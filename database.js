@@ -27,7 +27,7 @@ const NotasAvaliadores = sequelize.define("NotasAvaliadores", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  nomeAvaliado: {
+  avaliado: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -39,7 +39,7 @@ const NotasAvaliadores = sequelize.define("NotasAvaliadores", {
 
 // Modelo Carta de Intenção
 const CartaIntencaos = sequelize.define("CartaIntencaos", {
-  avaliado: {
+  nome: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -51,7 +51,7 @@ const CartaIntencaos = sequelize.define("CartaIntencaos", {
 
 // Modelo Média Entrevista
 const MediaEntrevista = sequelize.define("MediaEntrevista", {
-  avaliado: {
+  nome: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -63,7 +63,7 @@ const MediaEntrevista = sequelize.define("MediaEntrevista", {
 
 // Modelo Média Histórico
 const MediaHistoricos = sequelize.define("MediaHistoricos", {
-  avaliado: {
+  nome: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -75,7 +75,7 @@ const MediaHistoricos = sequelize.define("MediaHistoricos", {
 
 // Modelo Média Final
 const MediaFinals = sequelize.define("MediaFinals", {
-  avaliado: {
+  nome: {
     type: DataTypes.STRING,
     allowNull: false,
   },

@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("/dados-admin")
             .then(response => response.json())
             .then(data => {
-                dadosOriginais = JSON.parse(JSON.stringify(data)); // Copia profunda dos dados
+                dadosOriginais = JSON.parse(JSON.stringify(data));
 
                 preencherTabela(data.mediasFinal, "tabela-medias", ["nome", "media"]);
                 preencherTabela(data.mediasHistorico, "tabela-historico", ["nome", "media"]);
@@ -101,7 +101,7 @@ function preencherTabela(dados, tabelaId, colunas) {
 function buscarTabela() {
     const termo = document.getElementById("busca").value.toLowerCase().trim();
     if (termo === "") {
-        window.location.reload(); // Recarrega para mostrar tudo
+        window.location.reload();
         return;
     }
     const linhas = document.querySelectorAll("tbody tr");
