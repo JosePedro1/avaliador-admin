@@ -5,37 +5,99 @@ require("dotenv").config(); // Carrega as variáveis de ambiente
 const DATABASE_URL = process.env.DATABASE_URL;
 
 if (!DATABASE_URL) {
-    console.error("A variável DATABASE_URL não foi configurada corretamente!");
-    process.exit(1); // Encerra o servidor caso não haja a URL do banco de dados
+  console.error("❌ A variável DATABASE_URL não foi configurada corretamente!");
+  process.exit(1); // Encerra o servidor caso não haja a URL do banco de dados
 }
 
-// Criando a instância do Sequelize com a URL do PostgreSQL
+// Instância do Sequelize
 const sequelize = new Sequelize(DATABASE_URL, {
-    dialect: "postgres", // Definindo o tipo do banco de dados como PostgreSQL
-    logging: false, // Desabilitando os logs SQL
-    dialectOptions: {
-        ssl: {
-            require: true, // Necessário para conexão segura com PostgreSQL
-            rejectUnauthorized: false, // Para permitir conexões com o certificado SSL não autorizado (necessário para Railway)
-        },
+  dialect: "postgres",
+  logging: false, // Não exibir logs SQL no console
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // Permite conexões com certificados SSL auto-assinados (Railway)
     },
+  },
 });
 
-// Definindo o modelo Avaliacao
-const Avaliacao = sequelize.define("Avaliacao", {
-    avaliador: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    avaliacoes: {
-        type: DataTypes.JSONB, // ou DataTypes.JSON
-        allowNull: false,
-    },
+// Modelo NotasAvaliadores
+const NotasAvaliadores = sequelize.define("NotasAvaliadores", {
+  avaliador: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  nomeAvaliado: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  nota: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
 });
 
-// Sincronizando o banco de dados
-sequelize.sync()
-    .then(() => console.log("Banco de dados sincronizado"))
-    .catch((err) => console.log("Erro ao sincronizar banco de dados", err));
+// Modelo Carta de Intenção
+const CartaIntencaos = sequelize.define("CartaIntencaos", {
+  avaliado: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  nota: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+});
 
-module.exports = { sequelize, Avaliacao };
+// Modelo Média Entrevista
+const MediaEntrevista = sequelize.define("MediaEntrevista", {
+  avaliado: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  media: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+});
+
+// Modelo Média Histórico
+const MediaHistoricos = sequelize.define("MediaHistoricos", {
+  avaliado: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  media: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+});
+
+// Modelo Média Final
+const MediaFinals = sequelize.define("MediaFinals", {
+  avaliado: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  media: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+});
+
+// Sincronizando todos os modelos com o banco de dados
+sequelize
+  .sync()
+  .then(() => console.log("🔥 Banco de dados sincronizado com sucesso!"))
+  .catch((err) =>
+    console.error("❌ Erro ao sincronizar o banco de dados:", err)
+  );
+
+module.exports = {
+  sequelize,
+  NotasAvaliadores,
+  CartaIntencaos,
+  MediaEntrevista,
+  MediaHistoricos,
+  MediaFinals,
+};

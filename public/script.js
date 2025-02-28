@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 preencherTabela(data.mediasHistorico, "tabela-historico", ["avaliado", "media"]);
                 preencherTabela(data.mediasEntrevista, "tabela-entrevista", ["avaliado", "media"]);
                 preencherTabela(data.cartaIntencao, "tabela-carta", ["avaliado", "nota"]);
-                preencherTabela(data.avaliacoes, "tabela-avaliacoes", ["avaliador", "avaliado", "nota"]);
+                preencherTabela(data.avaliacoes, "tabela-avaliacoes", ["avaliador", "nomeAvaliado", "nota"]);                
             })
             .catch(() => console.error("Erro ao carregar dados!"));
     }
@@ -99,23 +99,29 @@ function preencherTabela(dados, tabelaId, colunas) {
 }
 
 function buscarTabela() {
-    const termo = document.getElementById("busca").value.toLowerCase();
-    const tabelas = document.querySelectorAll("tbody");
-
-    tabelas.forEach(tabela => {
-        const linhas = tabela.querySelectorAll("tr");
-        linhas.forEach(linha => {
-            linha.style.display = linha.textContent.toLowerCase().includes(termo) ? "" : "none";
-        });
+    const termo = document.getElementById("busca").value.toLowerCase().trim();
+    if (termo === "") {
+        window.location.reload(); // Recarrega para mostrar tudo
+        return;
+    }
+    const linhas = document.querySelectorAll("tbody tr");
+    linhas.forEach(linha => {
+        linha.style.display = linha.textContent.toLowerCase().includes(termo) ? "" : "none";
     });
 }
+
 
 let ordenado = false;
 
 function ordenarAutomaticamente() {
     if (!ordenado) {
         Object.keys(dadosOriginais).forEach(key => {
-            dadosOriginais[key].sort((a, b) => (b.media || b.nota) - (a.media || a.nota));
+            dadosOriginais[key].sort((a, b) => {
+                const valorA = a.media || a.nota || 0;
+                const valorB = b.media || b.nota || 0;
+                return valorB - valorA;
+            });
+            
             preencherTabela(dadosOriginais[key], getTabelaId(key), getColunas(key));
         });
         ordenado = true;
@@ -149,7 +155,13 @@ function exportarPDF(tabelaId, titulo) {
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF();
     pdf.text(titulo, 10, 10);
-    pdf.autoTable({ html: `#${tabelaId}` });
+    pdf.autoTable({
+        html: `#${tabelaId}`,
+        startY: 20,
+        margin: { top: 20 },
+        styles: { fontSize: 12, cellPadding: 5, halign: "center" }, 
+        theme: "striped"
+    });    
     pdf.save(`${titulo}.pdf`);
 }
 
