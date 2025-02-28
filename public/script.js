@@ -1,20 +1,20 @@
 function verificarAdmin() {
-    const senha = prompt("Digite a senha de administrador:");
+    // const senha = prompt("Digite a senha de administrador:");
 
-    fetch("/admin-login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ senha })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.autorizado) {
+    // fetch("/admin-login", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ senha })
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //     if (data.autorizado) {
             window.location.href = "admin.html";
-        } else {
-            alert("Senha incorreta!");
-        }
-    })
-    .catch(() => alert("Erro ao verificar senha!"));
+    //     } else {
+    //         alert("Senha incorreta!");
+    //     }
+    // })
+    // .catch(() => alert("Erro ao verificar senha!"));
 }
 
 function enviarAvaliacao() {

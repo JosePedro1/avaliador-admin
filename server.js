@@ -5,10 +5,10 @@ require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
-if (!ADMIN_PASSWORD) {
-    console.error("A variável DATABASE_senha não foi configurada corretamente!");
-}
+// const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+// if (!ADMIN_PASSWORD) {
+//     console.error("A variável DATABASE_senha não foi configurada corretamente!");
+// }
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
