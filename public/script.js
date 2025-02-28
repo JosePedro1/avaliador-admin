@@ -157,18 +157,22 @@ function getColunas(key) {
 function exportarPDF(tabelaId, titulo) {
     const confirmacao = confirm(`Deseja fazer o download da tabela "${titulo}" em PDF?`);
     if (confirmacao) {
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF();
-        pdf.text(titulo, 10, 10);
-        pdf.autoTable({
-            html: `#${tabelaId}`,
-            startY: 20,
-            margin: { top: 20 },
-            styles: { fontSize: 12, cellPadding: 5, halign: "center" },
-            theme: "striped"
-        });
-        pdf.save(`${titulo}.pdf`);
-        alert("Download realizado com sucesso!");
+        if (window.jspdf && window.jspdf.jsPDF) {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            pdf.text(titulo, 10, 10);
+            pdf.autoTable({
+                html: `#${tabelaId}`, 
+                startY: 20,
+                margin: { top: 20 },
+                styles: { fontSize: 12, cellPadding: 5, halign: "center" },
+                theme: "striped" 
+            });
+            pdf.save(`${titulo}.pdf`);
+            alert("Download realizado com sucesso!");
+        } else {
+            alert("Erro ao gerar PDF! Verifique se a biblioteca jsPDF está carregada.");
+        }
     } else {
         alert("Download cancelado.");
     }
