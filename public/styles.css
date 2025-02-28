@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0a0a0a;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+.avaliador-container {
+    background-color: #1a1a2e;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+input {
+    padding: 8px;
+    width: 80%;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+th {
+    background-color: #16213e;
+}
+
+td input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    text-align: center;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* LOGO RESPONSIVA */
+.logo {
+    width: 80px; /* Tamanho fixo padrão */
+    max-width: 100px; /* Limite máximo */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Ajuste para tablets */
+@media (max-width: 768px) {
+    .logo {
+        width: 70px; /* Mantém a logo menor */
+        max-width: 80px;
+        top: 5px;
+        left: 5px;
+    }
+
+    .avaliador-container {
+        width: 90%;
+    }
+
+    input {
+        width: 100%;
+    }
+}
+
+/* Ajuste para celulares */
+@media (max-width: 480px) {
+    .logo {
+        width: 50px; /* Reduz ainda mais a logo */
+        max-width: 60px;
+        top: 5px;
+        left: 5px;
+    }
+
+    .avaliador-container {
+        width: 95%;
+        padding: 15px;
+    }
+}

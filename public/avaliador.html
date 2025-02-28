@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliador</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <img src="logo.png" alt="Logo" class="logo">
+    <div class="avaliador-container">
+        <h2>Insira seu Nome</h2>
+        <input type="text" id="nomeAvaliador" placeholder="Seu nome..." required>
+        <h2>Avalie as pessoas</h2>
+        <table>
+            <tr>
+                <th style="width: 200px;">Nome</th>
+                <th style="width: 100px;">Nota</th>
+            </tr>
+            <tr><td>Mikaely</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Ana Paula</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Erick</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Antônio</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Bruna Verena</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Vitória</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Anna Karolyne</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Marina</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Antônio Carlos</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Helen</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Keila</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Maria Rita</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Daysa</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+            <tr><td>Eduarda</td><td><input type="number" class="nota" step="0.1" min="0" max="10" required></td></tr>
+        </table>
+        <button onclick="enviarAvaliacao()">Enviar</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
