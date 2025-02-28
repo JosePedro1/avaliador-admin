@@ -8,6 +8,7 @@ const {
 } = require("./models/Media");
 
 async function inserirDados() {
+  console.log("Função inserirDados foi chamada");
   await sequelize.sync({force: true});
 
   const mediasFinal = [
