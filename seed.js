@@ -8,7 +8,7 @@ const {
 } = require("./models/Media");
 
 async function inserirDados() {
-  await sequelize.sync({});
+  await sequelize.sync({force: true});
 
   const mediasFinal = [
     { nome: "Mikaely", nota: 5.49 },
@@ -178,7 +178,7 @@ async function inserirDados() {
   await CartaIntencao.bulkCreate(cartaIntencao);
   await MediaHistorico.bulkCreate(mediaHistorico);
   await MediaEntrevista.bulkCreate(mediaEntrevista);
-  await NotasAvaliadores.bulkCreate(NotasAvaliadores)
+  await NotasAvaliadores.bulkCreate(notasavaliadores)
   console.log("✅ Dados inseridos com sucesso!");
   process.exit();
 }
