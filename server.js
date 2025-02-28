@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "public", "admin.html")));
 app.get("/avaliador", (req, res) => res.sendFile(path.join(__dirname, "public", "avaliador.html")));
-app.get("/antiga tela", (req, res) => res.sendFile(path.join(__dirname, "public", "index.html")));
+app.get("/antiga-tela", (req, res) => res.sendFile(path.join(__dirname, "public", "index.html")));
 
 app.post("/avaliar", async (req, res) => {
     const { nomeAvaliador, avaliacoes } = req.body;
