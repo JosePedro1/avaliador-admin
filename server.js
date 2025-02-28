@@ -1,12 +1,6 @@
 const express = require("express");
 const path = require("path");
 const { sequelize, Avaliacao } = require("./database"); // Importa o Sequelize e o modelo Avaliacao
-const { inserirDados } = require("./seed");
-
-(async () => {
-  await inserirDados();
-})();
-
 require("dotenv").config();
 
 const app = express();

@@ -8,7 +8,7 @@ const {
 } = require("./models/Media");
 
 async function inserirDados() {
-  await sequelize.sync({});
+  await sequelize.sync({force: true});
 
   const mediasFinal = [
     { nome: "Mikaely", nota: 5.49 },
@@ -183,4 +183,4 @@ async function inserirDados() {
   process.exit();
 }
 
-module.exports = {inserirDados};
+inserirDados()

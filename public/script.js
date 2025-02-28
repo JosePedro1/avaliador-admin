@@ -66,27 +66,30 @@ function enviarAvaliacao() {
     .catch(() => alert("Erro ao enviar avaliação."));
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     if (window.location.pathname.includes("admin.html")) {
         fetch("/dados-admin")
             .then(response => response.json())
             .then(data => {
-                const tabelaAvaliacoes = document.getElementById("tabela-avaliacoes");
-                const tabelaMedias = document.getElementById("tabela-medias");
-
-                data.avaliacoes.forEach(avaliacao => {
-                    const row = tabelaAvaliacoes.insertRow();
-                    row.insertCell(0).textContent = avaliacao.avaliador;
-                    row.insertCell(1).textContent = avaliacao.avaliado;
-                    row.insertCell(2).textContent = avaliacao.nota;
-                });
-
-                data.medias.forEach(media => {
-                    const row = tabelaMedias.insertRow();
-                    row.insertCell(0).textContent = media.avaliado;
-                    row.insertCell(1).textContent = media.media.toFixed(2);
-                });
+                preencherTabela(data.avaliacoes, "tabela-avaliacoes", ["avaliador", "avaliado", "nota"]);
+                preencherTabela(data.mediasFinal, "tabela-medias-final", ["avaliado", "media"]);
+                preencherTabela(data.mediasEntrevista, "tabela-medias-entrevista", ["avaliado", "media"]);
+                preencherTabela(data.mediasHistorico, "tabela-medias-historico", ["avaliado", "media"]);
+                preencherTabela(data.cartaIntencao, "tabela-carta-intencao", ["avaliado", "nota"]);
             })
             .catch(() => console.error("Erro ao carregar dados!"));
     }
 });
+
+function preencherTabela(dados, tabelaId, colunas) {
+    const tabela = document.getElementById(tabelaId);
+    tabela.innerHTML = "";
+    dados.forEach(item => {
+        const row = tabela.insertRow();
+        colunas.forEach(coluna => {
+            const cell = row.insertCell();
+            cell.textContent = item[coluna];
+        });
+    });
+}
+
