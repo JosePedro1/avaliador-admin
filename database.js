@@ -55,7 +55,7 @@ const MediaEntrevista = sequelize.define("MediaEntrevista", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  media: {
+  nota: {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
@@ -67,7 +67,7 @@ const MediaHistoricos = sequelize.define("MediaHistoricos", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  media: {
+  nota: {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
@@ -79,7 +79,7 @@ const MediaFinals = sequelize.define("MediaFinals", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  media: {
+  nota: {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
