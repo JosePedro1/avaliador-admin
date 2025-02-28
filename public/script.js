@@ -126,11 +126,10 @@ function ordenarAutomaticamente() {
             preencherTabela(dadosOriginais[key], getTabelaId(key), getColunas(key));
         });
         ordenado = true;
-        botao.textContent = "Ordenar por Ordem Inicial";
+        botao.textContent = "voltar para ordem inicial";
         alert("Tabela organizada da maior para a menor nota.");
     } else {
         window.location.reload(); 
-        botao.textContent = "Ordenar por Nota Maior"; 
     }
 }
 
@@ -154,27 +153,50 @@ function getColunas(key) {
     }[key];
 }
 
-function exportarPDF(tabelaId, titulo) {
+function exportarPDF(tabelaId, titulo, botao) {
     const confirmacao = confirm(`Deseja fazer o download da tabela "${titulo}" em PDF?`);
     if (confirmacao) {
-        if (window.jspdf && window.jspdf.jsPDF) {
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF();
-            pdf.text(titulo, 10, 10);
-            pdf.autoTable({
-                html: `#${tabelaId}`, 
-                startY: 20,
-                margin: { top: 20 },
-                styles: { fontSize: 12, cellPadding: 5, halign: "center" },
-                theme: "striped" 
-            });
-            pdf.save(`${titulo}.pdf`);
-            alert("Download realizado com sucesso!");
-        } else {
-            alert("Erro ao gerar PDF! Verifique se a biblioteca jsPDF está carregada.");
-        }
+        botao.textContent = "Baixando... 🔥";
+        botao.disabled = true; // Desativa o botão para evitar múltiplos cliques
+
+        setTimeout(() => {
+            if (window.jspdf && window.jspdf.jsPDF) {
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF();
+                pdf.text(titulo, 10, 10);
+                pdf.autoTable({
+                    html: `#${tabelaId}`,
+                    startY: 20,
+                    margin: { top: 20 },
+                    styles: { fontSize: 12, cellPadding: 5, halign: "center" },
+                    theme: "striped"
+                });
+                pdf.save(`${titulo}.pdf`);
+
+                setTimeout(() => {
+                    alert(`Download "${titulo}" realizado com sucesso!`);
+                    botao.textContent = "Exportar para PDF";
+                    botao.disabled = false; // Reativa o botão
+                }, 1000);
+            } else {
+                alert("Erro ao gerar PDF! Verifique se a biblioteca jsPDF está carregada.");
+                botao.textContent = "Exportar para PDF";
+                botao.disabled = false;
+            }
+        }, 2000);
     } else {
         alert("Download cancelado.");
+    }
+}
+
+function exportarTodosPDFs() {
+    const confirmacao = confirm(`Deseja fazer o download de **TODAS** as tabelas em PDF de uma vez?`);
+    if (confirmacao) {
+        const botoes = document.querySelectorAll("button[onclick^='exportarPDF']");
+        botoes.forEach(botao => {
+            botao.click();
+        });
+        alert("Todos os PDFs foram baixados com sucesso!");
     }
 }
 

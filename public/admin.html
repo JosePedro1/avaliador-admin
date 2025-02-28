@@ -15,10 +15,10 @@
 
     <input type="text" id="busca" placeholder="🔍 Buscar por Avaliado..." onkeyup="buscarTabela()">
 
-    <button id = "botaoOrdenar" onclick="ordenarAutomaticamente()">Ordenação Automática 🔄</button>
+    <button id = "botaoOrdenar" onclick="ordenarAutomaticamente()">Ordenar por Nota Maior</button>
 
     <h2>Nota Final</h2>
-    <button onclick="exportarPDF('tabela-medias', 'Nota Final')">Exportar para PDF</button>
+    <button onclick="exportarPDF('tabela-medias', 'Nota Final', this)">Exportar para PDF</button>
     <table>
         <thead>
             <tr>
@@ -30,7 +30,7 @@
     </table>
 
     <h2>Média do Histórico</h2>
-    <button onclick="exportarPDF('tabela-historico', 'Média do Histórico')">Exportar para PDF</button>
+    <button onclick="exportarPDF('tabela-historico', 'Média do Histórico', this)">Exportar para PDF</button>
     <table>
         <thead>
             <tr>
@@ -42,7 +42,7 @@
     </table>
 
     <h2>Média da Entrevista</h2>
-    <button onclick="exportarPDF('tabela-entrevista', 'Média da Entrevista')">Exportar para PDF</button>
+    <button onclick="exportarPDF('tabela-entrevista', 'Média da Entrevista', this)">Exportar para PDF</button>
     <table>
         <thead>
             <tr>
@@ -54,7 +54,7 @@
     </table>
 
     <h2>Carta de Intenção</h2>
-    <button onclick="exportarPDF('tabela-carta', 'Carta de Intenção')">Exportar para PDF</button>
+    <button onclick="exportarPDF('tabela-carta', 'Carta de Intenção', this)">Exportar para PDF</button>
     <table>
         <thead>
             <tr>
@@ -66,7 +66,7 @@
     </table>
 
     <h2>Notas dos Avaliadores</h2>
-    <button onclick="exportarPDF('tabela-avaliacoes', 'Notas dos Avaliadores')">Exportar para PDF</button>
+    <button onclick="exportarPDF('tabela-avaliacoes', 'Notas dos Avaliadores', this)">Exportar para PDF</button>
     <table>
         <thead>
             <tr>
@@ -77,6 +77,7 @@
         </thead>
         <tbody id="tabela-avaliacoes"></tbody>
     </table>
+    <button onclick="exportarTodosPDFs()">Exportar TODOS PDFs 🔥</button>
 
     <button onclick="window.location.href='index.html'">Voltar</button>
 </div>
