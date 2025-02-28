@@ -75,11 +75,11 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 dadosOriginais = JSON.parse(JSON.stringify(data));
 
-                preencherTabela(data.mediasFinal, "tabela-medias", ["nome", "media"]);
-                preencherTabela(data.mediasHistorico, "tabela-historico", ["nome", "media"]);
-                preencherTabela(data.mediasEntrevista, "tabela-entrevista", ["nome", "media"]);
+                preencherTabela(data.mediasFinal, "tabela-medias", ["nome", "nota"]);
+                preencherTabela(data.mediasHistorico, "tabela-historico", ["nome", "nota"]);
+                preencherTabela(data.mediasEntrevista, "tabela-entrevista", ["nome", "nota"]);
                 preencherTabela(data.cartaIntencao, "tabela-carta", ["nome", "nota"]);
-                preencherTabela(data.avaliacoes, "tabela-avaliacoes", ["avaliador", "Avaliado", "nota"]);                
+                preencherTabela(data.avaliacoes, "tabela-avaliacoes", ["avaliador", "avaliado", "nota"]);                
             })
             .catch(() => console.error("Erro ao carregar dados!"));
     }
