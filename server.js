@@ -1,8 +1,9 @@
 const express = require("express");
 const path = require("path");
 const { sequelize, Avaliacao } = require("./database"); // Importa o Sequelize e o modelo Avaliacao
+const { inserirDados } = require("./seed");
+inserirDados();
 require("dotenv").config();
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 // const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
