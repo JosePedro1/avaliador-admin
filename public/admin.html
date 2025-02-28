@@ -7,72 +7,81 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <img src="logo.png" alt="Logo" class="logo">
-    <div class="container">
-        <h1>NOTAS GERAIS</h1>
 
-        <!-- NOTA FINAL -->
-        <h2>Nota Final</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Avaliado</th>
-                    <th>Média</th>
-                </tr>
-            </thead>
-            <tbody id="tabela-medias"></tbody>
-        </table>
+<img src="logo.png" alt="Logo" class="logo">
 
-        <!-- NOTAS DOS AVALIADORES -->
-        <h2>Notas dos Avaliadores</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Avaliador</th>
-                    <th>Avaliado</th>
-                    <th>Nota</th>
-                </tr>
-            </thead>
-            <tbody id="tabela-avaliacoes"></tbody>
-        </table>
+<div class="avaliador-container">
+    <h1>NOTAS GERAIS</h1>
 
-        <!-- MÉDIA DO HISTÓRICO -->
-        <h2>Média do Histórico</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Avaliado</th>
-                    <th>Média</th>
-                </tr>
-            </thead>
-            <tbody id="tabela-historico"></tbody>
-        </table>
+    <input type="text" id="busca" placeholder="🔍 Buscar por Avaliado..." onkeyup="buscarTabela()">
 
-        <!-- MÉDIA DA ENTREVISTA -->
-        <h2>Média da Entrevista</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Avaliado</th>
-                    <th>Média</th>
-                </tr>
-            </thead>
-            <tbody id="tabela-entrevista"></tbody>
-        </table>
+    <button onclick="ordenarAutomaticamente()">Ordenação Automática 🔄</button>
 
-        <!-- CARTA DE INTENÇÃO -->
-        <h2>Carta de Intenção</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Avaliado</th>
-                    <th>Nota</th>
-                </tr>
-            </thead>
-            <tbody id="tabela-carta"></tbody>
-        </table>
-    </div>
+    <h2>Nota Final</h2>
+    <button onclick="exportarPDF('tabela-medias', 'Nota Final')">Exportar para PDF</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Avaliado</th>
+                <th>Média</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-medias"></tbody>
+    </table>
 
-    <script src="script.js"></script>
+    <h2>Média do Histórico</h2>
+    <button onclick="exportarPDF('tabela-historico', 'Média do Histórico')">Exportar para PDF</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Avaliado</th>
+                <th>Média</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-historico"></tbody>
+    </table>
+
+    <h2>Média da Entrevista</h2>
+    <button onclick="exportarPDF('tabela-entrevista', 'Média da Entrevista')">Exportar para PDF</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Avaliado</th>
+                <th>Média</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-entrevista"></tbody>
+    </table>
+
+    <h2>Carta de Intenção</h2>
+    <button onclick="exportarPDF('tabela-carta', 'Carta de Intenção')">Exportar para PDF</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Avaliado</th>
+                <th>Nota</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-carta"></tbody>
+    </table>
+
+    <h2>Notas dos Avaliadores</h2>
+    <button onclick="exportarPDF('tabela-avaliacoes', 'Notas dos Avaliadores')">Exportar para PDF</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Avaliador</th>
+                <th>Avaliado</th>
+                <th>Nota</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-avaliacoes"></tbody>
+    </table>
+
+    <button onclick="window.location.href='index.html'">Voltar</button>
+</div>
+
+<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </body>
 </html>
