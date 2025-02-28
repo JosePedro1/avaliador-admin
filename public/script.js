@@ -114,6 +114,7 @@ function buscarTabela() {
 let ordenado = false;
 
 function ordenarAutomaticamente() {
+    const botao = document.getElementById("botaoOrdenar");
     if (!ordenado) {
         Object.keys(dadosOriginais).forEach(key => {
             dadosOriginais[key].sort((a, b) => {
@@ -125,9 +126,11 @@ function ordenarAutomaticamente() {
             preencherTabela(dadosOriginais[key], getTabelaId(key), getColunas(key));
         });
         ordenado = true;
+        botao.textContent = "Ordenar por Ordem Inicial";
         alert("Tabela organizada da maior para a menor nota.");
     } else {
-        window.location.reload(); // Recarrega a página para voltar para a ordem original
+        window.location.reload(); 
+        botao.textContent = "Ordenar por Nota Maior"; 
     }
 }
 
@@ -152,16 +155,22 @@ function getColunas(key) {
 }
 
 function exportarPDF(tabelaId, titulo) {
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF();
-    pdf.text(titulo, 10, 10);
-    pdf.autoTable({
-        html: `#${tabelaId}`,
-        startY: 20,
-        margin: { top: 20 },
-        styles: { fontSize: 12, cellPadding: 5, halign: "center" }, 
-        theme: "striped"
-    });    
-    pdf.save(`${titulo}.pdf`);
+    const confirmacao = confirm(`Deseja fazer o download da tabela "${titulo}" em PDF?`);
+    if (confirmacao) {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+        pdf.text(titulo, 10, 10);
+        pdf.autoTable({
+            html: `#${tabelaId}`,
+            startY: 20,
+            margin: { top: 20 },
+            styles: { fontSize: 12, cellPadding: 5, halign: "center" },
+            theme: "striped"
+        });
+        pdf.save(`${titulo}.pdf`);
+        alert("Download realizado com sucesso!");
+    } else {
+        alert("Download cancelado.");
+    }
 }
 
