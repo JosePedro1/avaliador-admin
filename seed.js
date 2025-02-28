@@ -77,7 +77,7 @@ async function inserirDados() {
     { nome: "Daysa", nota: 6.2 },
     { nome: "Eduarda", nota: 9.12 },
   ];
-  const NotasAvaliadores = [
+  const notasAvaliadoresData = [
     // JACOB
     { avaliador: "JACOB", avaliado: "Mikaely", nota: 4.1 },
     { avaliador: "JACOB", avaliado: "Ana Paula", nota: 8.4 },
@@ -178,7 +178,7 @@ async function inserirDados() {
   await CartaIntencao.bulkCreate(cartaIntencao);
   await MediaHistorico.bulkCreate(mediaHistorico);
   await MediaEntrevista.bulkCreate(mediaEntrevista);
-  await NotasAvaliadores.bulkCreate(notasavaliadores)
+  await NotasAvaliadores.bulkCreate(notasAvaliadoresData)
   console.log("✅ Dados inseridos com sucesso!");
   process.exit();
 }
