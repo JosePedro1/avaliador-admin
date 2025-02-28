@@ -221,7 +221,7 @@ function exportarTodosPDFs(botao) {
         setTimeout(() => {
             pdf.save(`Todas_as_Tabelas.pdf`);
             alert("Todas as tabelas foram exportadas para um único PDF!");
-            botao.textContent = "Exportar TODOS PDFs";
+           
             botao.disabled = false;
         }, 2000);
     } else {
