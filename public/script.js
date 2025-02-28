@@ -143,10 +143,10 @@ function getTabelaId(key) {
 
 function getColunas(key) {
     return {
-        mediasFinal: ["avaliado", "media"],
-        mediasHistorico: ["avaliado", "media"],
-        mediasEntrevista: ["avaliado", "media"],
-        cartaIntencao: ["avaliado", "nota"],
+        mediasFinal: ["nome", "nota"],
+        mediasHistorico: ["nome", "nota"],
+        mediasEntrevista: ["nome", "nota"],
+        cartaIntencao: ["nome", "nota"],
         avaliacoes: ["avaliador", "avaliado", "nota"]
     }[key];
 }
