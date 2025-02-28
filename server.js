@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const { sequelize, Avaliacao } = require("./database"); // Importa o Sequelize e o modelo Avaliacao
 require("dotenv").config();
-
+require("./seed")
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -88,4 +88,13 @@ app.post("/admin-login", (req, res) => {
     }
 });
 
-app.listen(PORT, () => console.log(`🚀 Servidor rodando na porta ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`🚀 Servidor rodando na porta ${PORT}`);
+    try {
+        console.log("Chamando a função inserirDados...");
+        require("./seed");
+        console.log("Função inserirDados foi chamada com sucesso.");
+    } catch (error) {
+        console.error("Erro ao chamar a função inserirDados:", error);
+    }
+});
